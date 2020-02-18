@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+  <?php include_once 'predlozak/head.phtml'; ?>
+  </head>
+
+  <body>
+    <header>
+    <?php include_once 'predlozak/header.phtml'; ?>
+    </header>
+
+    <main role="main">
+    <?php include_once 'predlozak/mainrole.phtml'; ?>
+
+    </main>
+
+    <footer class="text-muted">
+    <?php require_once 'predlozak/podnozje.phtml' ?>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Dovući jQuery lokalno -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="<?php echo App::config('url')?>public/js/bootstrap.min.js"></script>
+  </body>
+</html>
