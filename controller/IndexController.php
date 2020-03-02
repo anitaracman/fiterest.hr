@@ -31,15 +31,18 @@ class IndexController extends Controller
             return;
         }
 
-       
+        //$veza = new PDO('mysql:host=localhost;dbname=edunovapp20;charset=utf8',
+        //'edunova','edunova');
 
         $veza = DB::getInstanca();
 
-        	  
+        	    //sql INJECTION PROBLEM
+        //$veza->query('select lozinka from operater 
+        //              where email=\'' . $_POST['email'] . '\';');
         $izraz = $veza->prepare('select * from operater 
                       where email=:email;');
         $izraz->execute(['email'=>$_POST['email']]);
-        
+        //$rezultat=$izraz->fetch(PDO::FETCH_OBJ);
         $rezultat=$izraz->fetch();
         if($rezultat==null){
             $this->view->render('prijava',[
@@ -58,7 +61,7 @@ class IndexController extends Controller
         }
         unset($rezultat->lozinka);
         $_SESSION['operater']=$rezultat;
-      
+        //$this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaPloca');
         $npc = new NadzornaplocaController();
         $npc->index();
     }
@@ -83,6 +86,15 @@ class IndexController extends Controller
 
 
     }
+
+    public function registracija()
+    {
+        $this->view->render('registracija');
+    }
+
+
+
+
     public function onama()
     {
         $this->view->render('onama');
@@ -95,13 +107,48 @@ class IndexController extends Controller
         $s->naziv='PHP programiranje';
         $s->sifra=1;
         $niz[]=$s;
-      
+        //$this->view->render('onama',$niz);
         echo json_encode($niz);
     }
+
+    
+    public function gost()
+    {
+        $gost=Operater::read(1);
+        $_SESSION['operater']=$gost;
+        $npc = new NadzornaplocaController();
+        $npc->index();
+    } 
+
 
     public function test()
     {
      echo password_hash('e',PASSWORD_BCRYPT);
-      
+      // echo md5('mojaMala'); NE KORISTITI
     } 
+
+
+public function registrirajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Operater::registrirajnovi();
+        $this->view->render('registracijagotova');
+    }
+
+    //nije osnovno - Anita ovo ne trebaš u prvom laufu učiti
+    public function zavrsiregistraciju()
+    {
+        Operater::zavrsiregistraciju($_GET['id']);
+        $this->view->render('prijava');
+    }
+
+    public function email()
+    {
+        $headers = "From: Tomislav Jakopec <cesar@lin39.mojsite.com>\r\n";
+$headers .= "Reply-To: Tomislav Jakopec <cesar@lin39.mojsite.com>\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+        mail('tjakopec@gmail.com','Test','Test poruka <a href="http://fiterest.hr/">Fiterest</a>', $headers);
+        echo 'GOTOV';
+    } 
+
 }

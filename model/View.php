@@ -13,12 +13,8 @@ class View
     {
         ob_start();
         extract($parametri);
-        include BP . 'view' . DIRECTORY_SEPARATOR 
-        . $stranica . '.phtml';
+        include BP . 'view' . DIRECTORY_SEPARATOR . $stranica . '.phtml';
         $sadrzaj = ob_get_clean();
-      
-        include BP . 'view' . DIRECTORY_SEPARATOR 
-        . $this -> predlozak . '.phtml';
-
+        include BP . 'view' . DIRECTORY_SEPARATOR . $this->predlozak . '.phtml';
     } 
 }
