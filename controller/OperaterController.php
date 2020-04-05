@@ -2,18 +2,62 @@
 
 class OperaterController extends AdminController
 {
+
+    private $viewDir = 'privatno' . 
+    DIRECTORY_SEPARATOR . 'operater' .
+    DIRECTORY_SEPARATOR;
+
     public function index()
     {
-
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('select * from operater');
-        $izraz->execute();
-        $rezultati = $izraz->fetchAll();
-
-        $this->view->render('privatno' . 
-     DIRECTORY_SEPARATOR . 'operater' .
-     DIRECTORY_SEPARATOR . 'index',[
-         'podaci'=>$rezultati
+        $this->view->render($this->viewDir . 'index',[
+         'podaci'=>Operater::readAll()
      ]);
+    }
+
+    public function novi()
+    {
+        $this->view->render($this->viewDir . 'novi',
+            ['poruka'=>'Popunite sve tražene podatke']
+        );
+    }
+
+    public function dodajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Operater::create();
+        $this->index();
+    }
+
+   
+
+    public function obrisi()
+    {
+        //prvo dođu silne kontrole
+        if(Operater::delete()){
+            header('location: /operater/index');
+        }
+        
+    }
+
+    public function promjena()
+    {
+        $operater = Operater::read($_GET['sifra']);
+        if(!$operater){
+            $this->index();
+            exit;
+        }
+
+        $this->view->render($this->viewDir . 'promjena',
+            ['operater'=>$operater,
+                'poruka'=>'Promjenite željene podatke']
+        );
+     
+    }
+
+    public function promjeni()
+    {
+        // I OVDJE DOĐU SILNE KONTROLE
+        Operater::update();
+        header('location: /operater/index');
     }
 }

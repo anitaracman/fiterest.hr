@@ -142,6 +142,8 @@ public function registrirajnovi()
         $this->view->render('prijava');
     }
 
+    
+
     public function email()
     {
         $headers = "From: Tomislav Jakopec <cesar@lin39.mojsite.com>\r\n";
