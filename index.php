@@ -1,4 +1,5 @@
-<?php
+<?php 
+session_start();
 define("BP",__DIR__ . DIRECTORY_SEPARATOR );
 error_reporting(E_ALL);
 ini_set("display_errors",1);

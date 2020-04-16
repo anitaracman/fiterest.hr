@@ -39,7 +39,7 @@ CREATE TABLE `topics` (
 
 CREATE TABLE `posts` (
   `post_id` int(11) NOT NULL primary key auto_increment,
-  `user_id` int(11) NOT NULL,
+ 
   `topic_id` int(11) NOT NULL,
   `post_title` text NOT NULL,
   `post_content` text NOT NULL,
@@ -48,36 +48,12 @@ CREATE TABLE `posts` (
   `is_public` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `comments` (
-  `comment_id` int(11) NOT NULL primary key auto_increment,
-  `post_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `comment_author_id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-CREATE TABLE `friend_requests` (
-  `id` int(11) NOT NULL primary key auto_increment,
-  `user_id_from` int(10) NOT NULL,
-  `user_id_to` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-CREATE TABLE `messages` (
-  `msg_id` int(11) NOT NULL primary key auto_increment,
-  `sender` int(11) NOT NULL,
-  `receiver` int(11) NOT NULL,
-  `msg_sub` text NOT NULL,
-  `msg_topic` text NOT NULL,
-  `reply` text NOT NULL,
-  `status` text NOT NULL,
-  `msg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-alter table posts add foreign key (user_id) references users(user_id);
+
+
+
 alter table posts add foreign key (topic_id) references topics(topic_id);
-alter table comments add foreign key (user_id) references users(user_id);
-alter table comments add foreign key (post_id) references posts(post_id);
 
