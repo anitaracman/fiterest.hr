@@ -1,0 +1,30 @@
+<br>
+<div class="container">
+<body style="text-align:center;" >
+<h1>Results:</h1>
+<?php
+    //feedback messages are given variable names.
+    $underweight_msg = " -> UNDERWEIGHT"; 
+    $normal_msg = " -> NORMAL";
+    $overweight_msg = " -> OVERWEIGHT";
+    $obese_msg = " -> OBESE";
+
+    echo $bmi;
+
+    if ($bmi < 18.5) {
+        echo $underweight_msg;
+    } elseif ($bmi > 30) {
+        echo $obese_msg;
+    } else {
+        echo $normal_msg;
+    }
+?>
+</body>
+</div>
+<br>
+<br>
+<div class="container">
+<img src="<?php echo App::config('url')?>public/slike/bmi.jpg" rel="stylesheet"> </img>
+</div>
+<br>
+<br>

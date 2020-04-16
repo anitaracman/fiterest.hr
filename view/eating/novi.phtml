@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row align-items-start">
+
+<form class="log-in-form" method="POST"
+action="/eating/dodajnovi">
+
+
+
+ <label>Title <input type="text" id="post_title" name="post_title" ></label>
+  
+  <label>Description<input type="text" id="post_content" name="post_content"> </label>
+
+
+  <label for="topic_id">Topic</label>
+  <select name="topic_id" id="topic_id">
+    <option value="1">Workouts & progress</option>
+    <option value="2">Healthy eating</option>
+    <option value="3">Equipment</option>
+ 
+  </select>
+
+  
+  <label>Image<input type="file" id="image" name="image"> </label>
+
+
+  <div class="grid-x grid-margin-x">
+    <div class="large-6 cell">
+      <a href="/eating/index" class="alert button expanded">Cancel</a>
+    </div>
+    <div class="large-6 cell">
+      <input type="submit" class="button expanded" value="Upload"></input>
+    </div>
+  </div>
+</form>
+<br>
+<?php echo $poruka; ?>
+
+
+
+
+
+
+

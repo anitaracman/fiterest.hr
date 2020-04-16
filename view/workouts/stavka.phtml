@@ -1,0 +1,40 @@
+<div class="large-4 cell" style="text-align: center;">
+    <div class="callout">
+
+    <?php
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR
+            . 'slike' . DIRECTORY_SEPARATOR . 
+            'workouts' . DIRECTORY_SEPARATOR 
+            . $red->topic_id . '.jpg')):
+        ?>
+        <img style="max-width: 200px" src="<?php echo APP::config('url'); ?>public/images/workouts/<?php echo $red->topic_id; ?>.jpg" 
+        alt="<?php echo $red->post_title . ' ' . $red->post_content ?>" />
+            <?php else:?>
+                <img style="max-width: 200px" src="<?php echo APP::config('url'); ?>public/slike/workouts.png" 
+        alt="There is no image" />
+            <?php endif;?>
+
+        <h1><?php echo $red->post_title ?>
+        <br /> <?php echo $red->post_content ?></h1>
+        <?php echo $red->image ?><br />
+     
+
+      
+        <hr />
+        <a href="/workouts/promjena?topic_id=<?php echo $red->post_id ?>">
+        <i title="Promjeni" class="fas fa-edit fa-2x"></i></a> 
+        
+        <?php if($red->ukupno==0): ?>
+        <a onclick="return confirm('Sigurno obrisati <?php 
+        echo $red->post_title . ' ' . $red->post_content ?> ');" 
+        href="/workouts/obrisi?topic_id=<?php echo $red->post_id ?>">
+        <i title="Obriši" class="fas fa-trash fa-2x" style="color: red;"></i></a>
+        <?php else:?>
+
+        <i title="Ne može se obrisati jer je polaznik član jedne ili više grupa" class="fas fa-trash fa-2x" style="color: gray;"></i>
+
+        <?php endif;?>
+
+
+    </div>
+</div>

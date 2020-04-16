@@ -1,0 +1,63 @@
+
+
+<div class="container">
+  <div class="row align-items-start">
+
+  <div class="jumbotron">
+  <h1 align="center" class="display-2">Workouts & progress</h1>
+  <p class="lead">Tell us, show or find the best workout routines and training plans for you to do at home or in the gym. Show your workout progress and motivate others.</p>
+
+	
+  <div class="text-center">
+  <img src="<?php echo App::config('url')?>public/slike/workouts2.png" class="rounded" alt="...">
+</div>
+    
+  <hr class="my-4">
+
+ 
+  <div class="container">
+	<div class="row">
+	
+        <div class="search">
+        <form action="/workouts/trazi" method="get">
+<input type="text" name="uvjet" id="uvjet class="form-control input-sm" maxlength="64" placeholder="Enter topic, keywords,..." value="" />
+ <button type="submit" class="btn btn-primary btn-sm">Search</button>
+</div>
+	</div>
+</div>
+
+
+<hr>
+
+<div class="container">
+
+        <a class="btn btn-danger" 
+            href="/workouts/novi"
+            style="border: 0px;">
+            Add new post</a>
+
+            
+    </div>
+</div>
+
+
+
+
+	<?php if(isset($p)){
+    echo $p;
+  } ?>
+    
+    </div>
+
+
+    <div class="col center">
+        <?php 
+        foreach($podaci as $red){
+            $putanjaslike = App::config('url') . 'view' . DIRECTORY_SEPARATOR . 'workouts' . DIRECTORY_SEPARATOR . 'slike' . DIRECTORY_SEPARATOR . $red->image; 
+            
+            //BP . 'view' . DIRECTORY_SEPARATOR . 'workouts' . DIRECTORY_SEPARATOR . 'slike' . DIRECTORY_SEPARATOR . $red->image; 
+            include 'red.phtml'; 
+            echo '<hr>';
+        }
+        ?>
+       </div>

@@ -1,0 +1,66 @@
+
+
+<div class="container">
+  <div class="row align-items-start">
+
+  <div class="jumbotron">
+  <h1 align="center" class="display-2">Healthy eating</h1>
+  <p class="lead">Tell us, show or learn how to eat healthy food and meals. Here is all about recipes, videos, diet tips, eating plans and nutrition advice.</p>
+
+  <div class="text-center">
+  <img src="<?php echo App::config('url')?>public/slike/eat.png" class="rounded" alt="...">
+</div>
+                
+  <hr class="my-4">
+
+ 
+  <div class="container">
+	<div class="row">
+	
+        <div class="search">
+        <form action="/eating/trazi" method="get">
+<input type="text" name="uvjet" id="uvjet class="form-control input-sm" maxlength="64" placeholder="Search" value="" />
+ <button type="submit" class="btn btn-primary btn-sm">Search</button>
+</div>
+	</div>
+</div>
+
+
+
+<hr>
+
+<div class="container">
+
+        <a class="btn btn-danger" 
+            href="/eating/novi"
+            style="border: 0px;">
+            Add new post</a>
+
+            </div>
+</div>
+
+
+
+
+	<?php if(isset($p)){
+    echo $p;
+  } ?>
+    
+    </div>
+
+
+   
+
+
+
+    <div class="col center">
+        <?php 
+        foreach($podaci as $red){
+            $putanjaslike = App::config('url') . 'view' . DIRECTORY_SEPARATOR . 'eating' . DIRECTORY_SEPARATOR . 'slike' . DIRECTORY_SEPARATOR . $red->image; 
+            
+            //BP . 'view' . DIRECTORY_SEPARATOR . 'eating' . DIRECTORY_SEPARATOR . 'slike' . DIRECTORY_SEPARATOR . $red->image; 
+            include 'red.phtml'; 
+            echo '<hr>';
+        }
+        ?>
+       </div>

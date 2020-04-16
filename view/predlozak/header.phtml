@@ -10,14 +10,16 @@
               <ul class="list-unstyled">
 
 
-                <li><?php if(!isset($_SESSION['operater'])): ?><a href="/index/prijava" class="text-white">Sing up</a><?php else:?>
+               
+              <li><?php if(!isset($_SESSION['operater'])): ?><a href="/index/prijava" class="text-white">Log in</a><?php else:?>
                 <a href="/index/odjava">Odjavi 
                 <?php echo $_SESSION['operater']->ime . 
                 ' ' . $_SESSION['operater']->prezime; ?></a>
             <?php endif;?></li>
-                <li><a href="#" class="text-white">Log in</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
+                <li><a href="/index/registracija" class="text-white">Sing up</a></li>
+                <li><a href="#" class="text-white">Your Account</a></li>
 
+                
 
 
             
@@ -30,12 +32,12 @@
       </div>
       <div class="navbar navbar-dark bg-dark box-shadow">
         <div class="container d-flex justify-content-between">
-          <a href="#" i class="navbar-brand d-flex align-items-center">
+          <a href="/index/" i class="navbar-brand d-flex align-items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             <p><i class="w3-jumbo w3-spin fa fa-home"></i></p>
             <strong>Home</strong>
           </a>
-          <a href="#" class="navbar-brand d-flex align-items-left">
+          <a href="/nadzornaPloca" class="navbar-brand d-flex align-items-left">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             <strong>My profile</strong>
           </a>
