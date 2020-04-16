@@ -14,7 +14,6 @@ class WorkoutsController extends Controller
     
         $this->view->render('workouts' . DIRECTORY_SEPARATOR . 'index',[
             'podaci'=>$podaciizbaze
-            
            ]);
     
     
@@ -23,77 +22,67 @@ class WorkoutsController extends Controller
     }
 
 
-public function trazi()
-{
-    
-    if(!isset($_GET['stranica']) || $_GET['stranica']=='0'){
-        $stranica=1;
-    }else{
-        $stranica=$_GET['stranica'];
+    public function trazi()
+    {
+        $podaci = Workouts::trazi($_GET['uvjet']);
+
+        if(count($podaci)===0){
+            $this->view->render('workouts', ['podaci'=>[], 'p'=>'Nema rezultata za tu pretragu!']);
+            return;
+        }
+
+        $this->view->render('workouts' . DIRECTORY_SEPARATOR . 'index',[
+            'podaci'=>$podaci
+        ]);
     }
 
-    $podaci = Workouts::trazi($_GET['uvjet'],
-    $stranica);
-
-    if(count($podaci)===0){
-        $stranica--;
-        $podaci = Workouts::trazi($_GET['uvjet'],
-        $stranica);
-    }
-
-    $this->view->render($this->viewDir . 'index',[
-        'podaci'=>$podaci,
-        'stranica' => $stranica,
-        'uvjet' => $_GET['uvjet'],
-        'ukupnoStranica' => Workouts::ukupnoStranica($_GET['uvjet'])
-       ]);
+    public function novi()
+    {
+        $this->view->render($this->viewDir . 'novi',
+            ['poruka'=>'Popunite sve tražene podatke']
+        );
     }
 
 
+    public function dodajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Workouts::create();
+        $this->index();
+    }
+
+    public function obrisi()
+    {
+        //prvo dođu silne kontrole
+        if(Workoutsc::delete()){
+            header('location: /workouts/index');
+        }
+        
+    }
 
 
-public function novi()
-{
-    $this->view->render($this->viewDir . 'novi',
-        ['poruka'=>'Popunite sve tražene podatke']
-    );
-}
+    public function promjena()
+    {
+        $predavac = Workouts::read($_GET['topic_id']);
+        if(!$workouts){
+            $this->index();
+            exit;
+        }
 
-public function dodajnovi()
-{
-    //prvo dođu sve silne kontrole
-    Workouts::create();
-    $this->index();
-}
+        $this->view->render($this->viewDir . 'promjena',
+            ['workouts'=>$predavac,
+                'poruka'=>'Change']
+        );
+     
+    }
 
-public function obrisi()
-{
-    //prvo dođu silne kontrole
-    if(Workouts::delete()){
+    public function promjeni()
+    {
+        // I OVDJE DOĐU SILNE KONTROLE
+        Workouts::update();
         header('location: /workouts/index');
     }
-    
-}
 
-public function promjena()
-{
-    $workouts = Workouts::read($_GET['sifra']);
-    if(!$workouts){
-        $this->index();
-        exit;
-    }
 
-    $this->view->render($this->viewDir . 'promjena',
-        ['workouts'=>$workouts,
-            'poruka'=>'Promjenite željene podatke']
-    );
- 
-}
 
-public function promjeni()
-{
-    // I OVDJE DOĐU SILNE KONTROLE
-    Workouts::update();
-    header('location: /workoutsr/index');
-}
 }

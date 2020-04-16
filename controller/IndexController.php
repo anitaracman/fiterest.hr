@@ -75,7 +75,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $poruka='hello iz kontrolera';
+        $poruka='';
         $kod=22;
 
        

@@ -22,4 +22,33 @@ class EquipmentController extends Controller
         
     }
 
+
+    public function trazi()
+    {
+        $podaci = Equipment::trazi($_GET['uvjet']);
+
+        if(count($podaci)===0){
+            $this->view->render('pocetna', ['p'=>'Nema rezultata za tu pretragu!']);
+            return;
+        }
+
+        $this->view->render('equipment' . DIRECTORY_SEPARATOR . 'index',[
+            'podaci'=>$podaci
+        ]);
+    }
+
+    public function novi()
+    {
+        $this->view->render($this->viewDir . 'novi',
+            ['poruka'=>'Popunite sve tražene podatke']
+        );
+    }
+
+
+    public function dodajnovi()
+    {
+        //prvo dođu sve silne kontrole
+        Equipment::create();
+        $this->index();
+    }
     }
