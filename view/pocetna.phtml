@@ -1,4 +1,22 @@
-Iz pocetna.phtml <br />
-    <?php 
-        echo $p . ' - ' . $k;
-     ?>
+<?php include_once 'predlozak/mainrole.phtml'; ?>
+<h1><?php echo $p; ?></h1>
+<div class="grid-x">
+    <div class="large-12 small-12 cell">
+        <div class="callout" style="min-height: 400px;">
+        <body class="container">
+
+        <h3>         BMI Calculator </h3> 
+Body mass index, or BMI, is used to determine whether you are in a healthy weight range for your height.
+
+It is useful to consider BMI alongside waist circumference, as waist measurement helps to assess risk by measuring the amount of fat carried around your middle.  
+<br>
+<br>
+<body style="text-align:center;" >
+<a href="/bmi/index" class="btn btn-primary my-2">BMI CALCULATOR</a>  <img src="<?php echo App::config('url')?>public/slike/calc.jpg" rel="stylesheet">
+
+<br>
+<br>
+<h3> What’s BMI? </h3>
+<p>BMI compares your weight to your height, and is calculated by dividing your weight (in kilograms) by your height (in metres squared). It gives you an idea of whether you’re 'underweight', a 'healthy' weight, 'overweight', or 'obese' for your height. BMI is one type of tool to help health professionals assess the risk for chronic disease.</p>
+
+</body>

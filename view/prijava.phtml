@@ -1,11 +1,25 @@
-<form class="log-in-form" method="POST"
+
+
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    
+
+    <!-- Login Form -->
+    <form method="POST"
 action="/index/autorizacija">
- <label>Email
-    <input type="email" id="email" name="email" value="<?php echo $email ?>">
-  </label>
-  <label>Password
-    <input type="password" id="lozinka" name="lozinka">
-  </label>
-  <p><input type="submit" class="button expanded" value="Log in"></input></p>
-</form>
-<?php echo $poruka; ?>
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="login"  value="<?php echo $email ?>">
+      <input type="text" id="lozinka" class="fadeIn third" name="lozinka" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+    <?php echo $poruka; ?>
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>

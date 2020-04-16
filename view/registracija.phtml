@@ -1,0 +1,49 @@
+<body class="container" style="text-align:center;" >
+<h3> Registering to this website, you accept our Terms of use and our Privacy policy </h3>
+
+<form class="log-in-form" method="POST"
+action="/index/registrirajnovi">
+<hr>
+ <label>Email
+    <input type="email" id="email" name="email" value="<?php 
+    echo isset($_POST['email']) ? $_POST['email'] : '' 
+    ?>">
+  </label>
+<br>
+<br>
+  <label>Password
+    <input type="password" id="lozinka" name="lozinka">
+  </label>
+  <br>
+  <br>
+  <label>Password again
+    <input type="password" id="lozinkaponovo" name="lozinkaponovo">
+  </label>
+  <br>
+  <br>
+  <label>Name
+    <input type="text" id="ime" name="ime" value="<?php 
+    echo isset($_POST['ime']) ? $_POST['ime'] : '' 
+    ?>">
+  </label>
+  <br>
+  <br>
+  <label>Surname
+    <input type="text" id="prezime" name="prezime" value="<?php 
+    echo isset($_POST['prezime']) ? $_POST['prezime'] : '' 
+    ?>">
+  </label>
+  <br>
+  <br>
+  <input type="submit" class="button expanded" value="Create your Fiterest account"></input>
+  
+</form>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
