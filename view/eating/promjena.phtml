@@ -1,28 +1,28 @@
 <div class="container" style="width: 500px;">
   <div class="signup-form">
-    <form action="/workouts/promjeni" method="POST">
+    <form action="/eating/promjeni" method="POST">
   	<h2>Change post</h2>
   	<hr>
       <div class="form-group">
   		  <label>Title</label>
         <input type="text" class="form-control" id="post_title" name="post_title" value="<?php 
-            echo $workouts->post_title;
+            echo $eating->post_title;
             ?>">
       </div>
   	  <div class="form-group">
         <label>Content</label>
          <input type="text" class="form-control" id="post_content" name="post_content" value="<?php 
-            echo $workouts->post_content;
+            echo $eating->post_content;
             ?>">
       </div>
 
   	  <div class="form-group">
         <input type="submit" class="btn btn-primary btn-block btn-lg" value="Promjeni"></input>
-        <a href="/workouts/index" class="btn btn-primary btn-block btn-lg" style="background-color: red; text-decoration: none; color: white">Odustani</a>
+        <a href="/eating/index" class="btn btn-primary btn-block btn-lg" style="background-color: red; text-decoration: none; color: white">Odustani</a>
       </div>
 
       <div class="text-center"><?php echo $poruka; ?></div>
-      <input type="hidden" name="post_id" value="<?php echo $workouts->post_id; ?>"></input>
+      <input type="hidden" name="post_id" value="<?php echo $eating->post_id; ?>"></input>
     </form>
   </div>
 </div>
