@@ -58,13 +58,9 @@ class Operater
         $_POST['uloga'] = 'oper';
         //print_r($_POST);
 
-        $izraz->execute($_POST);
-        $headers = "From: Edunova APP <cesar@lin39.mojsite.com>\r\n";
-        $headers .= "Reply-To: Edunova APP <cesar@lin39.mojsite.com>\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-                mail($_POST['email'],'Završi registraciju na Edunova APP',
-                '<a href="' . App::config('url') . 
-                'index/zavrsiregistraciju?id=' . $_POST['sessionid'] . '">Završi</a>', $headers);
+   $izraz->execute($_POST);
+   
+   
                
     }
 
