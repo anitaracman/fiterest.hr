@@ -8,8 +8,6 @@ class EquipmentController extends Controller
 
     public function index()
     {
-        //$workoutsModel=new Workouts;
-        //$rezultatiIzTablice= $workoutsModel->readAll();  može i ovako ako se ne radi statična funkcija iz modela workouts.php
        $podaciizbaze=Equipment::readAll(); 
     
         $this->view->render('equipment' . DIRECTORY_SEPARATOR . 'index',[
@@ -51,4 +49,34 @@ class EquipmentController extends Controller
         Equipment::create();
         $this->index();
     }
+    
+    public function obrisi()
+    {
+        //prvo dođu silne kontrole
+        Equipment::delete();
+        header('location: /equipment/index');
     }
+
+    public function promjena()
+    {
+        $equipment = Equipment::read($_GET['post_id']);
+        if(!$equipment){
+            $this->index();
+            exit;
+        }
+
+        $this->view->render($this->viewDir . 'promjena',
+            ['equipment'=>$equipment,
+                'poruka'=>'Change']
+        );
+     
+    }
+
+    public function promjeni()
+    {
+        // I OVDJE DOĐU SILNE KONTROLE
+        Equipment::update();
+        header('location: /equipment/index');
+    }
+
+}

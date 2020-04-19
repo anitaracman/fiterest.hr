@@ -25,17 +25,17 @@ class WorkoutsController extends Controller
     public function trazi()
     {
         $podaci = Workouts::trazi($_GET['uvjet']);
-
         if(count($podaci)===0){
-            $this->view->render('workouts', ['podaci'=>[], 'p'=>'Nema rezultata za tu pretragu!']);
+            $this->view->render('workouts'.  DIRECTORY_SEPARATOR . 'index', [
+                'podaci'=>[],
+                'p'=>'Sorry, no results were found!!'
+                ]);
             return;
         }
-
         $this->view->render('workouts' . DIRECTORY_SEPARATOR . 'index',[
             'podaci'=>$podaci
         ]);
     }
-
     public function novi()
     {
         $this->view->render($this->viewDir . 'novi',
@@ -51,26 +51,24 @@ class WorkoutsController extends Controller
         $this->index();
     }
 
+
     public function obrisi()
     {
         //prvo dođu silne kontrole
-        if(Workoutsc::delete()){
-            header('location: /workouts/index');
-        }
-        
+        Workouts::delete();
+        header('location: /workouts/index');
     }
-
 
     public function promjena()
     {
-        $predavac = Workouts::read($_GET['topic_id']);
+        $workouts = Workouts::read($_GET['post_id']);
         if(!$workouts){
             $this->index();
             exit;
         }
 
         $this->view->render($this->viewDir . 'promjena',
-            ['workouts'=>$predavac,
+            ['workouts'=>$workouts,
                 'poruka'=>'Change']
         );
      
@@ -82,7 +80,5 @@ class WorkoutsController extends Controller
         Workouts::update();
         header('location: /workouts/index');
     }
-
-
 
 }

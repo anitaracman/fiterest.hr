@@ -24,17 +24,17 @@ class EatingController extends Controller
     public function trazi()
     {
         $podaci = Eating::trazi($_GET['uvjet']);
-
         if(count($podaci)===0){
-            $this->view->render('pocetna', ['p'=>'Nema rezultata za tu pretragu!']);
+            $this->view->render('eating'.  DIRECTORY_SEPARATOR . 'index', [
+                'podaci'=>[],
+                'p'=>'Sorry, no results were found!!'
+                ]);
             return;
         }
-
         $this->view->render('eating' . DIRECTORY_SEPARATOR . 'index',[
             'podaci'=>$podaci
         ]);
     }
-
     public function novi()
     {
         $this->view->render($this->viewDir . 'novi',
@@ -49,4 +49,34 @@ class EatingController extends Controller
         Eating::create();
         $this->index();
     }
+ 
+    public function obrisi()
+    {
+        //prvo dođu silne kontrole
+        Eating::delete();
+        header('location: /eating/index');
     }
+
+    public function promjena()
+    {
+        $eating = Eating::read($_GET['post_id']);
+        if(!$eating){
+            $this->index();
+            exit;
+        }
+
+        $this->view->render($this->viewDir . 'promjena',
+            ['eating'=>$eating,
+                'poruka'=>'Change']
+        );
+     
+    }
+
+    public function promjeni()
+    {
+        // I OVDJE DOĐU SILNE KONTROLE
+        Eating::update();
+        header('location: /eating/index');
+    }
+
+}
