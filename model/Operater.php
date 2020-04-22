@@ -55,7 +55,7 @@ class Operater
         $_POST['lozinka'] = 
              password_hash($_POST['lozinka'],PASSWORD_BCRYPT);
         $_POST['sessionid'] = session_id();
-        $_POST['uloga'] = 'oper';
+        $_POST['uloga'] = 'operater';
         //print_r($_POST);
 
    $izraz->execute($_POST);
@@ -63,6 +63,7 @@ class Operater
    
                
     }
+
 
     public static function delete()
     {

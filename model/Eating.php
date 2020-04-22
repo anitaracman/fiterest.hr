@@ -47,12 +47,12 @@ class Eating
     {
         
   
-        
+        $_POST['operater']=$_SESSION['operater']->sifra;
         $_POST['image']= $_FILES['image']['name']; 
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('insert into posts 
-        (topic_id,  post_title, post_content,image) values 
-        (:topic_id, :post_title, :post_content,:image)');
+        (topic_id,  post_title, post_content,image,  operater) values 
+        (:topic_id, :post_title, :post_content,:image, :operater)');
         $izraz->execute($_POST);
         
         if(isset($_FILES['image'])){
